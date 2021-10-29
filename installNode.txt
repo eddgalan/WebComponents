@@ -10,5 +10,7 @@ npm install -g polymer-cli
 npm init
 # Instala litelement en la ruta actual
 npm i lit-element
+# Crear los archivos 'index.html' y también 'src/nombre-componente'
+# Hacer el componente
 # Inicia el servidor de 'pruebas'
 polymer serve
