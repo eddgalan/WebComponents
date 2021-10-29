@@ -6,5 +6,9 @@ source ~/.bashrc
 nvm install v12.16.1
 # Instalar Polymer CLI
 npm install -g polymer-cli
+# Después de crear la carpeta del componente, inicializarlo con el siguiente comando (Inicializa el proyecto frontend)
+npm init
+# Instala litelement en la ruta actual
+npm i lit-element
 # Inicia el servidor de 'pruebas'
 polymer serve
