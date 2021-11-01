@@ -4,13 +4,20 @@ export class MyElement extends LitElement{
   // Propiedades
   static get properties() {
     return{
-      slideIndex: Number,
+      slideIndex: {type: Number},
+      slides: {type: Array}
     };
   }
   /* ..:: Constructor ::.. */
   constructor(){
     super();
     this.slideIndex = 1;
+    this.slides = [
+      {texto:"Halloween 1", path:"imgs/halloween-01.webp", numero:"1 / 3", class:" active"},
+      {texto:"Halloween 2", path:"../imgs/halloween-02.webp", numero:"2 / 3", class:" active"},
+      {texto:"Halloween 3", path:"../imgs/halloween-03.webp", numero:"3 / 3", class:" active"}
+    ];
+
   }
 
   /* ..::  Estilos  ::.. */
@@ -102,64 +109,67 @@ export class MyElement extends LitElement{
   }
 
   /* ..:: Funciones que utiliza el componente ::.. */
-  // Next/previous controls
-  plusSlides(n){
-    this.showSlides(this.slideIndex += n);
+  // Cambia la slide (Adelante)
+  plusSlides(){
+    this.showSlides(this.slideIndex++);
   }
-  // Thumbnail image controls
+  lessSlides(n){
+    this.showSlides(this.slideIndex--);
+  }
+  // Imagenes miniatura
   currentSlide(n){
     this.showSlides(this.slideIndex = n);
   }
-  msgHola(){
-    alert("hola");
-  }
+
   // Muestra los slides
   showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {this.slideIndex = 1}
-    if (n < 1) {this.slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[this.slideIndex-1].style.display = "block";
-    dots[this.slideIndex-1].className += " active";
+
+    // var i;
+    // var slides = document.getElementsByClassName("mySlides");
+    // var dots = document.getElementsByClassName("dot");
+    // if (n > slides.length) {this.slideIndex = 1}
+    // if (n < 1) {this.slideIndex = slides.length}
+    // for (i = 0; i < slides.length; i++) {
+    //     slides[i].style.display = "none";
+    // }
+    // for (i = 0; i < dots.length; i++) {
+    //     dots[i].className = dots[i].className.replace(" active", "");
+    // }
+    // slides[this.slideIndex-1].style.display = "block";
+    // dots[this.slideIndex-1].className += " active";
+
   }
 
   render(){
     return html`
       <!-- Slideshow container -->
       <div class="slideshow-container">
-      <!-- Full-width images with number and caption text -->
-      <div class="mySlides fade">
-        <div class="numbertext">1 / 3</div>
-        <img src="imgs/halloween-01.webp" style="width:100%">
-        <div class="text">Caption Text</div>
-      </div>
-      <div class="mySlides fade">
-        <div class="numbertext">2 / 3</div>
-        <img src="../imgs/halloween-02.webp" style="width:100%">
-        <div class="text">Caption Two</div>
-      </div>
-      <div class="mySlides fade">
-        <div class="numbertext">3 / 3</div>
-        <img src="../imgs/halloween-03.webp" style="width:100%">
-        <div class="text">Caption Three</div>
-      </div>
-      <!-- Next and previous buttons -->
-      <a class="prev" @click="${this.plusSlides(-1)}">&#10094;</a>
-      <a class="next" @click="${this.plusSlides(1)}">&#10095;</a>
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade active">
+          <div class="numbertext">${this.slides[0].numero}</div>
+          <img src="${this.slides[0].path}" style="width:100%">
+          <div class="text">${this.slides[0].texto}</div>
+        </div>
+        <div class="mySlides fade">
+          <div class="numbertext">${this.slides[1].numero}</div>
+          <img src="${this.slides[1].path}" style="width:100%">
+          <div class="text">${this.slides[1].texto}</div>
+        </div>
+        <div class="mySlides fade">
+          <div class="numbertext">${this.slides[2].numero}</div>
+          <img src="${this.slides[2].path}" style="width:100%">
+          <div class="text">${this.slides[2].texto}</div>
+        </div>
+        <!-- Next and previous buttons -->
+        <a class="prev" @click="${this.lessSlides}">&#10094;</a>
+        <a class="next" @click="${this.plusSlides}">&#10095;</a>
       </div>
       <br>
       <!-- The dots/circles -->
       <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" @click="${this.currentSlide(1)})"></span>
+        <span class="dot" @click="${this.currentSlide(2)}"></span>
+        <span class="dot" @click="${this.currentSlide(3)}"></span>
       </div>
     `;
   }
