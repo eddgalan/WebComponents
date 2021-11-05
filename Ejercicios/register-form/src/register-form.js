@@ -7,6 +7,10 @@ export class RegisterForm extends LitElement{
       * {box-sizing: border-box}
       .container {
         padding: 16px;
+        background-color:#E0E0E0;
+      }
+      label{
+        font-size:18px;
       }
       input[type=text], input[type=email] {
         width: 100%;
@@ -15,14 +19,15 @@ export class RegisterForm extends LitElement{
         display: inline-block;
         border: 1px solid #000;
         background: #f1f1f1;
+        font-size:16px;
       }
       input[type=text]:focus, input[type=email]:focus {
-        background-color: #ddd;
+        background-color: #CFCFCF;
         outline: none;
         border: 2px solid;
       }
       hr {
-        border: 1px solid #f1f1f1;
+        border: 1px solid #CBCBCB;
         margin-bottom: 25px;
       }
       .registerbtn {
@@ -34,10 +39,11 @@ export class RegisterForm extends LitElement{
         cursor: pointer;
         width: 100%;
         opacity: 0.9;
+        font-size:16px;
       }
       .registerbtn:hover {
         opacity:1;
-        border: 2px solid #000;
+        border: 1px solid #000;
       }
       h2{
         text-align:center;
@@ -77,10 +83,6 @@ export class RegisterForm extends LitElement{
     this.registeredPeople = [];
   }
 
-  _validateForm(){
-    console.log("Validando...");
-  }
-
   /* ..:: Render | Template ::.. */
   render(){
     return html`
@@ -89,7 +91,6 @@ export class RegisterForm extends LitElement{
           <h2>Register</h2>
           <p class="center">Please fill in this form to register an user.</p>
           <hr>
-
           <label for="name"><b>Name</b></label>
           <input type="text" placeholder="Enter name" name="name" id="name" required>
 
@@ -105,7 +106,6 @@ export class RegisterForm extends LitElement{
           <label for="phone"><b>Phone</b></label>
           <input type="text" placeholder="(55) 00 00 00 00" name="phone" id="phone" required>
           <hr>
-
           <button type="button" class="registerbtn">Register</button>
         </div>
 
