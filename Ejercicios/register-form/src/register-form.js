@@ -22,7 +22,7 @@ export class RegisterForm extends LitElement{
         font-size:16px;
       }
       input[type=text]:focus, input[type=email]:focus {
-        background-color: #CFCFCF;
+        background-color: #FFF;
         outline: none;
         border: 2px solid;
       }
